@@ -3,49 +3,22 @@ workflows:
     name: VPNeo iOS Release
     max_build_duration: 60
     instance_type: mac_mini_m2
-    integrations:
-      app_store_connect: Codemagic
     environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.vpneo.app
       vars:
         XCODE_PROJECT: "speedtest IOS.xcodeproj"
         XCODE_SCHEME: "speedtest IOS"
         APP_STORE_APP_ID: 6761053051
-        BUNDLE_ID: "com.vpneo.app"
-        TUNNEL_BUNDLE_ID: "com.vpneo.app.tunnel"
-        WIDGET_BUNDLE_ID: "com.vpneo.app.widget"
         TEAM_ID: "JL9MW5YCQM"
       xcode: latest
     scripts:
-      - name: Set up keychain
+      - name: Set up code signing
         script: |
           keychain initialize
-      - name: Fetch signing files
-        script: |
-          app-store-connect fetch-signing-files "$BUNDLE_ID" \
-            --platform IOS \
-            --type IOS_APP_STORE \
-            --create
-          app-store-connect fetch-signing-files "$TUNNEL_BUNDLE_ID" \
-            --platform IOS \
-            --type IOS_APP_STORE \
-            --create
-          app-store-connect fetch-signing-files "$WIDGET_BUNDLE_ID" \
-            --platform IOS \
-            --type IOS_APP_STORE \
-            --create
-      - name: Add certs to keychain
-        script: |
           keychain add-certificates
-      - name: Set up profiles
-        script: |
           xcode-project use-profiles --project "$XCODE_PROJECT"
-      - name: Verify signing
-        script: |
-          echo "=== Certificates ==="
-          security find-identity -v -p codesigning
-          echo "=== Profiles ==="
-          ls ~/Library/MobileDevice/Provisioning\ Profiles/ 2>/dev/null || echo "No profiles"
-          ls ~/Library/Developer/Xcode/UserData/Provisioning\ Profiles/ 2>/dev/null || echo "No profiles in Xcode dir"
       - name: Increment build number
         script: |
           agvtool new-version -all $(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_APP_ID") + 1))
