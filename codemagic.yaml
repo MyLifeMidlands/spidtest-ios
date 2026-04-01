@@ -8,15 +8,25 @@ workflows:
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.vpneo.app
+        bundle_identifier:
+          - com.vpneo.app
+          - com.vpneo.app.tunnel
+          - com.vpneo.app.widget
       vars:
         XCODE_PROJECT: "speedtest IOS.xcodeproj"
         XCODE_SCHEME: "speedtest IOS"
         APP_STORE_APP_ID: 6761053051
       xcode: latest
     scripts:
-      - name: Set up code signing
+      - name: Fetch signing files
         script: |
+          app-store-connect fetch-signing-files com.vpneo.app --type IOS_APP_STORE --create
+          app-store-connect fetch-signing-files com.vpneo.app.tunnel --type IOS_APP_STORE --create
+          app-store-connect fetch-signing-files com.vpneo.app.widget --type IOS_APP_STORE --create
+          app-store-connect certificates list --type IOS_DISTRIBUTION --save || \
+          app-store-connect certificates create --type IOS_DISTRIBUTION --save
+          keychain initialize
+          keychain add-certificates
           xcode-project use-profiles
       - name: Increment build number
         script: |
