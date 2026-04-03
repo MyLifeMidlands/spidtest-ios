@@ -2,7 +2,9 @@ import SwiftUI
 
 struct VPNView: View {
     @StateObject private var viewModel = VPNViewModel()
+    @ObservedObject private var trafficStore = TrafficStatsStore.shared
     @State private var showSupportOptions = false
+    @State private var showRouting = false
 
     var body: some View {
         NavigationStack {
@@ -15,8 +17,26 @@ struct VPNView: View {
                         // Status
                         statusSection
 
+                        // Traffic stats (when connected)
+                        if viewModel.state == .connected {
+                            trafficSection
+                        }
+
                         // Active Server
                         serverSection
+
+                        // Reconnect info
+                        if let info = viewModel.reconnectInfo {
+                            HStack(spacing: 8) {
+                                ProgressView()
+                                    .tint(Theme.Colors.primary)
+                                    .scaleEffect(0.8)
+                                Text(info)
+                                    .font(Theme.Fonts.caption)
+                                    .foregroundStyle(Theme.Colors.primary)
+                            }
+                            .transition(.opacity)
+                        }
 
                         // Error
                         if let error = viewModel.errorMessage {
@@ -38,9 +58,17 @@ struct VPNView: View {
                     .padding(.bottom, 16)
             }
             .background(Theme.Colors.background)
-            .navigationTitle("VPN")
+            .navigationTitle(String(localized: "VPN"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showRouting = true
+                    } label: {
+                        Image(systemName: "arrow.triangle.branch")
+                            .foregroundStyle(Theme.Colors.primary)
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         viewModel.showServerList = true
@@ -56,7 +84,10 @@ struct VPNView: View {
             .sheet(isPresented: $viewModel.showServerList) {
                 ServerListView(serverStore: viewModel.serverStore, viewModel: viewModel)
             }
-            .confirmationDialog("Support", isPresented: $showSupportOptions, titleVisibility: .visible) {
+            .sheet(isPresented: $showRouting) {
+                RoutingView()
+            }
+            .confirmationDialog(String(localized: "Support"), isPresented: $showSupportOptions, titleVisibility: .visible) {
                 Button("Telegram") {
                     if let url = URL(string: AppConstants.supportURL) {
                         UIApplication.shared.open(url)
@@ -69,7 +100,7 @@ struct VPNView: View {
                 }
                 Button("Cancel", role: .cancel) {}
             } message: {
-                Text("How would you like to contact support?")
+                Text(String(localized: "How would you like to contact support?"))
             }
             .task {
                 await viewModel.setup()
@@ -131,6 +162,43 @@ struct VPNView: View {
         }
     }
 
+    // MARK: - Traffic Section
+
+    private var trafficSection: some View {
+        HStack(spacing: 12) {
+            trafficTile(
+                icon: "arrow.down.circle.fill",
+                label: String(localized: "Download"),
+                value: TrafficStats.formatBytes(trafficStore.stats.sessionDownload),
+                color: Theme.Colors.success
+            )
+            trafficTile(
+                icon: "arrow.up.circle.fill",
+                label: String(localized: "Upload"),
+                value: TrafficStats.formatBytes(trafficStore.stats.sessionUpload),
+                color: Theme.Colors.secondary
+            )
+        }
+    }
+
+    private func trafficTile(icon: String, label: String, value: String, color: Color) -> some View {
+        GlassCard {
+            VStack(spacing: 6) {
+                Image(systemName: icon)
+                    .foregroundStyle(color)
+                    .font(.system(size: 20))
+                Text(value)
+                    .font(Theme.Fonts.title)
+                    .foregroundStyle(Theme.Colors.textPrimary)
+                    .monospacedDigit()
+                Text(label)
+                    .font(Theme.Fonts.caption)
+                    .foregroundStyle(Theme.Colors.textSecondary)
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
+
     // MARK: - Server Section
 
     private var serverSection: some View {
@@ -188,7 +256,7 @@ struct VPNView: View {
             HStack(spacing: 6) {
                 Image(systemName: "headset.circle.fill")
                     .font(.system(size: 20))
-                Text("Support")
+                Text(String(localized: "Support"))
                     .font(Theme.Fonts.caption)
             }
             .foregroundStyle(Theme.Colors.primary)

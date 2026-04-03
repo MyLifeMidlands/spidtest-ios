@@ -3,14 +3,21 @@ import SwiftUI
 enum Theme {
     // MARK: - Colors
     enum Colors {
-        static let background = Color(hex: "0A0E14")
-        static let surface = Color(hex: "141B26")
-        static let surfaceLight = Color(hex: "1C2535")
+        // Adaptive background colors
+        static let background = Color("background", bundle: nil)
+        static let surface = Color("surface", bundle: nil)
+        static let surfaceLight = Color("surfaceLight", bundle: nil)
+
+        // Brand colors (same in both themes)
         static let primary = Color(hex: "00D4AA")
         static let primaryDark = Color(hex: "00A886")
         static let secondary = Color(hex: "6C63FF")
-        static let textPrimary = Color.white
-        static let textSecondary = Color(hex: "8892A4")
+
+        // Adaptive text colors
+        static let textPrimary = Color("textPrimary", bundle: nil)
+        static let textSecondary = Color("textSecondary", bundle: nil)
+
+        // Status colors (same in both themes)
         static let success = Color(hex: "00E676")
         static let warning = Color(hex: "FFB74D")
         static let error = Color(hex: "FF5252")

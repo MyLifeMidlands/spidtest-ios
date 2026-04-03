@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import UIKit
 
 @MainActor
 final class VPNViewModel: ObservableObject {
@@ -10,6 +11,7 @@ final class VPNViewModel: ObservableObject {
     @Published var showServerList = false
     @Published var importText = ""
     @Published var errorMessage: String?
+    @Published var reconnectInfo: String?
 
     private let vpnManager = VPNManager.shared
     let serverStore = ServerStore.shared
@@ -21,31 +23,98 @@ final class VPNViewModel: ObservableObject {
     private var failoverAttempts = 0
     private let maxFailoverAttempts = 3
 
+    // Reconnection
+    private var reconnectAttempts = 0
+    private let maxReconnectAttempts = 3
+    private var reconnectTask: Task<Void, Never>?
+    private var wasConnectedBeforeDisconnect = false
+
+    // Subscription refresh
+    private var subscriptionRefreshTask: Task<Void, Never>?
+
+    // Logging & Traffic
+    private let connectionLog = ConnectionLogStore.shared
+    private let trafficStats = TrafficStatsStore.shared
+
     init() {
         vpnManager.$state
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
 
         $state
+            .removeDuplicates()
             .sink { [weak self] newState in
                 guard let self = self else { return }
-                if newState == .connected {
-                    self.startTimer()
-                    self.failoverAttempts = 0
-                } else {
-                    self.stopTimer()
-                    if newState == .disconnected || newState == .error {
-                        self.connectionDuration = 0
-                    }
-                    // Failover: if disconnected unexpectedly, try next server
-                    if newState == .error,
-                       self.loadBalancer.mode == .failover,
-                       self.failoverAttempts < self.maxFailoverAttempts {
-                        Task { await self.attemptFailover() }
-                    }
-                }
+                self.handleStateChange(newState)
             }
             .store(in: &cancellables)
+    }
+
+    // MARK: - State Handling
+
+    private func handleStateChange(_ newState: VPNConnectionState) {
+        let previouslyConnected = wasConnectedBeforeDisconnect
+
+        switch newState {
+        case .connected:
+            startTimer()
+            failoverAttempts = 0
+            reconnectAttempts = 0
+            reconnectInfo = nil
+            wasConnectedBeforeDisconnect = true
+            // Save last connected server
+            if let server = lastConnectedServer {
+                SharedDefaults.shared.lastConnectedServerID = server.id
+                connectionLog.log(serverName: server.name, serverAddress: server.address, event: .connected)
+            }
+            // Traffic
+            trafficStats.startSession()
+            // Haptic
+            triggerHaptic(.success)
+
+        case .connecting:
+            break
+
+        case .disconnecting:
+            break
+
+        case .disconnected:
+            let duration = connectionDuration
+            stopTimer()
+            connectionDuration = 0
+            trafficStats.endSession()
+            // Log disconnect
+            if let server = lastConnectedServer {
+                connectionLog.log(serverName: server.name, serverAddress: server.address, event: .disconnected, duration: duration)
+            }
+            // Auto-reconnect if was connected (unexpected disconnect)
+            if previouslyConnected && SharedDefaults.shared.autoReconnect {
+                wasConnectedBeforeDisconnect = false
+                Task { await attemptAutoReconnect() }
+            } else {
+                wasConnectedBeforeDisconnect = false
+                triggerHaptic(.warning)
+            }
+
+        case .error:
+            stopTimer()
+            connectionDuration = 0
+            wasConnectedBeforeDisconnect = false
+            trafficStats.endSession()
+            // Log error
+            if let server = lastConnectedServer {
+                connectionLog.log(serverName: server.name, serverAddress: server.address, event: .error, error: errorMessage)
+            }
+            triggerHaptic(.error)
+            // Failover mode
+            if loadBalancer.mode == .failover, failoverAttempts < maxFailoverAttempts {
+                Task { await attemptFailover() }
+            }
+            // Auto-reconnect on error
+            else if SharedDefaults.shared.autoReconnect, reconnectAttempts < maxReconnectAttempts {
+                Task { await attemptAutoReconnect() }
+            }
+        }
     }
 
     // MARK: - Actions
@@ -57,24 +126,37 @@ final class VPNViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
 
-        // Measure pings if in bestPing mode
-        if loadBalancer.mode == .bestPing {
+        // Auto-ping on open
+        if SharedDefaults.shared.autoPingOnOpen {
+            await loadBalancer.measureAllPings(servers: serverStore.servers)
+        } else if loadBalancer.mode == .bestPing {
             await loadBalancer.measureAllPings(servers: serverStore.servers)
         }
+
+        // Auto-connect on launch
+        if SharedDefaults.shared.autoConnect && state == .disconnected {
+            await autoConnectToLastServer()
+        }
+
+        // Start subscription refresh
+        startSubscriptionRefresh()
     }
 
     func toggleConnection() async {
         errorMessage = nil
+        reconnectInfo = nil
+        cancelReconnect()
 
         if state == .connected || state == .connecting {
+            wasConnectedBeforeDisconnect = false // User-initiated disconnect
             vpnManager.disconnect()
+            triggerHaptic(.light)
             return
         }
 
         // Select server based on balancing mode
         let server: VLESSConfig?
         if loadBalancer.mode == .bestPing && loadBalancer.serverPings.isEmpty {
-            // Measure first, then select
             await loadBalancer.measureAllPings(servers: serverStore.servers)
             server = loadBalancer.selectServer(from: serverStore.servers, current: serverStore.activeServer)
         } else {
@@ -86,7 +168,6 @@ final class VPNViewModel: ObservableObject {
             return
         }
 
-        // Update active server in store
         serverStore.setActive(id: server.id)
         lastConnectedServer = server
 
@@ -112,11 +193,112 @@ final class VPNViewModel: ObservableObject {
             showAddServer = false
             errorMessage = nil
             if count > 1 {
-                errorMessage = nil // clear any previous error
+                errorMessage = nil
             }
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+
+    // MARK: - Auto-Reconnect
+
+    private func attemptAutoReconnect() async {
+        guard reconnectAttempts < maxReconnectAttempts else {
+            reconnectInfo = nil
+            errorMessage = String(localized: "Reconnection failed after \(maxReconnectAttempts) attempts")
+            return
+        }
+
+        reconnectAttempts += 1
+        let attempt = reconnectAttempts
+
+        let delay: UInt64
+        if SharedDefaults.shared.aggressiveReconnect {
+            delay = UInt64(attempt) * 1_000_000_000 // 1s, 2s, 3s
+        } else {
+            delay = UInt64(attempt) * 3_000_000_000 // 3s, 6s, 9s
+        }
+
+        reconnectInfo = String(localized: "Reconnecting... (\(attempt)/\(maxReconnectAttempts))")
+
+        reconnectTask = Task {
+            try? await Task.sleep(nanoseconds: delay)
+
+            guard !Task.isCancelled else { return }
+
+            let server = lastConnectedServer
+                ?? serverStore.activeServer
+                ?? lastSavedServer()
+
+            guard let server = server else {
+                reconnectInfo = nil
+                errorMessage = String(localized: "No server available for reconnection")
+                return
+            }
+
+            lastConnectedServer = server
+
+            do {
+                try await vpnManager.connect(server: server)
+            } catch {
+                if !Task.isCancelled {
+                    errorMessage = error.localizedDescription
+                }
+            }
+        }
+    }
+
+    private func cancelReconnect() {
+        reconnectTask?.cancel()
+        reconnectTask = nil
+        reconnectAttempts = 0
+        reconnectInfo = nil
+    }
+
+    private func lastSavedServer() -> VLESSConfig? {
+        guard let id = SharedDefaults.shared.lastConnectedServerID else { return nil }
+        return serverStore.servers.first { $0.id == id }
+    }
+
+    // MARK: - Auto-Connect on Launch
+
+    private func autoConnectToLastServer() async {
+        let server = serverStore.activeServer
+            ?? lastSavedServer()
+            ?? serverStore.servers.first
+
+        guard let server = server else { return }
+
+        serverStore.setActive(id: server.id)
+        lastConnectedServer = server
+
+        do {
+            try await vpnManager.connect(server: server)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    // MARK: - Subscription Refresh
+
+    private func startSubscriptionRefresh() {
+        subscriptionRefreshTask?.cancel()
+
+        let intervalHours = SharedDefaults.shared.subscriptionRefreshInterval
+        guard intervalHours > 0 else { return }
+
+        subscriptionRefreshTask = Task {
+            while !Task.isCancelled {
+                let intervalSeconds = UInt64(intervalHours) * 3600 * 1_000_000_000
+                try? await Task.sleep(nanoseconds: intervalSeconds)
+                guard !Task.isCancelled else { break }
+                await serverStore.refreshSubscriptions()
+            }
+        }
+    }
+
+    func restartSubscriptionRefresh() {
+        startSubscriptionRefresh()
     }
 
     // MARK: - Failover
@@ -125,10 +307,10 @@ final class VPNViewModel: ObservableObject {
         guard let failed = lastConnectedServer else { return }
         failoverAttempts += 1
 
-        errorMessage = "Server failed. Switching... (\(failoverAttempts)/\(maxFailoverAttempts))"
+        errorMessage = String(localized: "Server failed. Switching... (\(failoverAttempts)/\(maxFailoverAttempts))")
 
         guard let next = loadBalancer.nextFailoverServer(from: serverStore.servers, failed: failed) else {
-            errorMessage = "No other servers available"
+            errorMessage = String(localized: "No other servers available")
             return
         }
 
@@ -140,6 +322,20 @@ final class VPNViewModel: ObservableObject {
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+
+    // MARK: - Haptic Feedback
+
+    private func triggerHaptic(_ type: UINotificationFeedbackGenerator.FeedbackType) {
+        guard SharedDefaults.shared.hapticFeedback else { return }
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(type)
+    }
+
+    private func triggerHaptic(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        guard SharedDefaults.shared.hapticFeedback else { return }
+        let generator = UIImpactFeedbackGenerator(style: style)
+        generator.impactOccurred()
     }
 
     // MARK: - Timer

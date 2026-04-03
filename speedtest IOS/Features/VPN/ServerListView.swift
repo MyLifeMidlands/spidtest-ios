@@ -65,10 +65,10 @@ struct ServerListView: View {
             Image(systemName: "server.rack")
                 .font(.system(size: 48))
                 .foregroundStyle(Theme.Colors.textSecondary)
-            Text("No Servers")
+            Text(String(localized: "No Servers"))
                 .font(Theme.Fonts.title)
                 .foregroundStyle(Theme.Colors.textPrimary)
-            Text("Add a VLESS server to get started")
+            Text(String(localized: "Add a VLESS server to get started"))
                 .font(Theme.Fonts.body)
                 .foregroundStyle(Theme.Colors.textSecondary)
             VombatButton(title: String(localized: "Add Server"), icon: "plus.circle") {
@@ -84,14 +84,44 @@ struct ServerListView: View {
 
     private var serverList: some View {
         List {
-            ForEach(serverStore.servers) { server in
-                serverRow(server)
-                    .listRowBackground(Theme.Colors.surface)
-                    .listRowSeparatorTint(Theme.Colors.surfaceLight)
+            // Favorites section
+            let favorites = serverStore.sortedServers.filter { $0.isFavorite }
+            if !favorites.isEmpty {
+                Section {
+                    ForEach(favorites) { server in
+                        serverRow(server)
+                            .listRowBackground(Theme.Colors.surface)
+                            .listRowSeparatorTint(Theme.Colors.surfaceLight)
+                    }
+                } header: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 11))
+                        Text(String(localized: "Favorites"))
+                    }
+                    .foregroundStyle(Theme.Colors.primary)
+                    .font(Theme.Fonts.caption)
+                }
             }
-            .onDelete { indexSet in
-                for index in indexSet {
-                    serverStore.remove(id: serverStore.servers[index].id)
+
+            // All servers
+            let others = serverStore.sortedServers.filter { !$0.isFavorite }
+            Section {
+                ForEach(others) { server in
+                    serverRow(server)
+                        .listRowBackground(Theme.Colors.surface)
+                        .listRowSeparatorTint(Theme.Colors.surfaceLight)
+                }
+                .onDelete { indexSet in
+                    for index in indexSet {
+                        serverStore.remove(id: others[index].id)
+                    }
+                }
+            } header: {
+                if !favorites.isEmpty {
+                    Text(String(localized: "All Servers"))
+                        .foregroundStyle(Theme.Colors.textSecondary)
+                        .font(Theme.Fonts.caption)
                 }
             }
         }
@@ -141,6 +171,21 @@ struct ServerListView: View {
                 }
             }
             .padding(.vertical, 4)
+        }
+        .swipeActions(edge: .leading) {
+            Button {
+                serverStore.toggleFavorite(id: server.id)
+            } label: {
+                Image(systemName: server.isFavorite ? "star.slash" : "star.fill")
+            }
+            .tint(Theme.Colors.primary)
+        }
+        .swipeActions(edge: .trailing) {
+            Button(role: .destructive) {
+                serverStore.remove(id: server.id)
+            } label: {
+                Image(systemName: "trash")
+            }
         }
     }
 

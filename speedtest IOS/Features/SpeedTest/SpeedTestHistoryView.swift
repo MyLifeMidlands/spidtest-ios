@@ -12,10 +12,10 @@ struct SpeedTestHistoryView: View {
                     Image(systemName: "chart.bar.xaxis")
                         .font(.system(size: 48))
                         .foregroundStyle(Theme.Colors.surfaceLight)
-                    Text("No results yet")
+                    Text(String(localized: "No results yet"))
                         .font(Theme.Fonts.body)
                         .foregroundStyle(Theme.Colors.textSecondary)
-                    Text("Run a speed test to see history")
+                    Text(String(localized: "Run a speed test to see history"))
                         .font(Theme.Fonts.caption)
                         .foregroundStyle(Theme.Colors.textSecondary)
                 }
@@ -33,7 +33,7 @@ struct SpeedTestHistoryView: View {
         .navigationTitle(String(localized: "History"))
         .toolbar {
             if !store.results.isEmpty {
-                Button("Clear") {
+                Button(String(localized: "Clear")) {
                     store.clear()
                 }
                 .foregroundStyle(Theme.Colors.error)

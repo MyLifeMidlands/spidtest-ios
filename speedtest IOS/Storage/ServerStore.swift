@@ -103,6 +103,20 @@ final class ServerStore: ObservableObject {
         save()
     }
 
+    func toggleFavorite(id: UUID) {
+        guard let index = servers.firstIndex(where: { $0.id == id }) else { return }
+        servers[index].isFavorite.toggle()
+        save()
+    }
+
+    /// Servers sorted: favorites first, then by creation date
+    var sortedServers: [VLESSConfig] {
+        servers.sorted { a, b in
+            if a.isFavorite != b.isFavorite { return a.isFavorite }
+            return a.createdAt > b.createdAt
+        }
+    }
+
     func setActive(id: UUID) {
         guard servers.contains(where: { $0.id == id }) else { return }
         activeServerID = id
@@ -144,7 +158,11 @@ final class ServerStore: ObservableObject {
 
         // Subscription URL (https:// or http://)
         if trimmed.lowercased().hasPrefix("http://") || trimmed.lowercased().hasPrefix("https://") {
-            return try await importFromSubscription(trimmed)
+            let count = try await importFromSubscription(trimmed)
+            if count > 0 {
+                saveSubscriptionURL(trimmed)
+            }
+            return count
         }
 
         // Try base64-decoded content (some apps copy raw base64)
@@ -221,6 +239,39 @@ final class ServerStore: ObservableObject {
         }
         guard let data = Data(base64Encoded: base64) else { return nil }
         return String(data: data, encoding: .utf8)
+    }
+
+    // MARK: - Subscription Refresh
+
+    /// Re-fetch all saved subscription URLs and update servers
+    func refreshSubscriptions() async {
+        let urls = shared_defaults.subscriptionURLs
+        guard !urls.isEmpty else { return }
+
+        for urlString in urls {
+            do {
+                _ = try await importFromSubscription(urlString)
+            } catch {
+                // Skip failed subscriptions silently
+            }
+        }
+    }
+
+    /// Save a subscription URL for auto-refresh
+    func saveSubscriptionURL(_ url: String) {
+        var urls = shared_defaults.subscriptionURLs
+        if !urls.contains(url) {
+            urls.append(url)
+            shared_defaults.subscriptionURLs = urls
+        }
+    }
+
+    // MARK: - Reset
+
+    func removeAll() {
+        servers = []
+        activeServerID = nil
+        save()
     }
 
     // MARK: - Persistence

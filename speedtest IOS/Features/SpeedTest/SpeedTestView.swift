@@ -98,7 +98,7 @@ struct SpeedTestView: View {
         GlassCard {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text("Last Result")
+                    Text(String(localized: "Last Result"))
                         .font(Theme.Fonts.caption)
                         .foregroundStyle(Theme.Colors.textSecondary)
                     Spacer()

@@ -1,47 +1,126 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Disconnected" : {
+    "Connected" : {
       "localizations" : {
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Отключено" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Desconectado" } }
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conectado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключено"
+          }
+        }
       }
     },
     "Connecting..." : {
       "localizations" : {
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Подключение..." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Conectando..." } }
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conectando..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключение..."
+          }
+        }
       }
     },
-    "Connected" : {
+    "Disconnected" : {
       "localizations" : {
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Подключено" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Conectado" } }
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconectado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отключено"
+          }
+        }
       }
     },
     "Disconnecting..." : {
       "localizations" : {
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Отключение..." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Desconectando..." } }
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconectando..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отключение..."
+          }
+        }
       }
     },
     "Error" : {
       "localizations" : {
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Ошибка" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Error" } }
-      }
-    },
-    "VPN Status" : {
-      "localizations" : {
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Статус VPN" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Estado VPN" } }
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка"
+          }
+        }
       }
     },
     "See your VPN connection status at a glance." : {
       "localizations" : {
-        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Статус VPN-подключения одним взглядом." } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ve el estado de tu conexión VPN de un vistazo." } }
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ve el estado de tu conexión VPN de un vistazo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статус VPN-подключения одним взглядом."
+          }
+        }
       }
+    },
+    "VPN Off" : {
+
+    },
+    "VPN On" : {
+
+    },
+    "VPN Status" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estado VPN"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статус VPN"
+          }
+        }
+      }
+    },
+    "VPN: %@" : {
+
     }
   },
   "version" : "1.0"

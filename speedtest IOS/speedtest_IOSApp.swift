@@ -8,7 +8,6 @@ struct VPNeoApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(.dark)
                 .onAppear {
                     NotificationService.shared.requestPermissionAndSchedule()
                 }

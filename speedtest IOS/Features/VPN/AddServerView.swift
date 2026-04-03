@@ -11,7 +11,7 @@ struct AddServerView: View {
                 // URI Input
                 GlassCard {
                     VStack(alignment: .leading, spacing: 12) {
-                        Label("VLESS URI or Subscription URL", systemImage: "link")
+                        Label(String(localized: "VLESS URI or Subscription URL"), systemImage: "link")
                             .font(Theme.Fonts.caption)
                             .foregroundStyle(Theme.Colors.textSecondary)
 
@@ -38,7 +38,7 @@ struct AddServerView: View {
                     Rectangle()
                         .fill(Theme.Colors.surfaceLight)
                         .frame(height: 1)
-                    Text("or")
+                    Text(String(localized: "or"))
                         .font(Theme.Fonts.caption)
                         .foregroundStyle(Theme.Colors.textSecondary)
                     Rectangle()
@@ -74,7 +74,7 @@ struct AddServerView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel") { dismiss() }
+                    Button(String(localized: "Cancel")) { dismiss() }
                         .foregroundStyle(Theme.Colors.textSecondary)
                 }
             }

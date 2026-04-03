@@ -31,6 +31,9 @@ struct VLESSConfig: Codable, Identifiable, Hashable {
     // Geo
     var countryCode: String?
 
+    // Favorites
+    var isFavorite: Bool
+
     var createdAt: Date
 
     init(
@@ -53,6 +56,7 @@ struct VLESSConfig: Codable, Identifiable, Hashable {
         wsHost: String? = nil,
         grpcServiceName: String? = nil,
         countryCode: String? = nil,
+        isFavorite: Bool = false,
         createdAt: Date = Date()
     ) {
         self.id = id
@@ -74,7 +78,33 @@ struct VLESSConfig: Codable, Identifiable, Hashable {
         self.wsHost = wsHost
         self.grpcServiceName = grpcServiceName
         self.countryCode = countryCode
+        self.isFavorite = isFavorite
         self.createdAt = createdAt
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        address = try container.decode(String.self, forKey: .address)
+        port = try container.decode(Int.self, forKey: .port)
+        uuid = try container.decode(String.self, forKey: .uuid)
+        encryption = try container.decode(String.self, forKey: .encryption)
+        flow = try container.decodeIfPresent(String.self, forKey: .flow)
+        security = try container.decode(String.self, forKey: .security)
+        sni = try container.decodeIfPresent(String.self, forKey: .sni)
+        fingerprint = try container.decodeIfPresent(String.self, forKey: .fingerprint)
+        alpn = try container.decodeIfPresent([String].self, forKey: .alpn)
+        publicKey = try container.decodeIfPresent(String.self, forKey: .publicKey)
+        shortId = try container.decodeIfPresent(String.self, forKey: .shortId)
+        spiderX = try container.decodeIfPresent(String.self, forKey: .spiderX)
+        network = try container.decode(String.self, forKey: .network)
+        wsPath = try container.decodeIfPresent(String.self, forKey: .wsPath)
+        wsHost = try container.decodeIfPresent(String.self, forKey: .wsHost)
+        grpcServiceName = try container.decodeIfPresent(String.self, forKey: .grpcServiceName)
+        countryCode = try container.decodeIfPresent(String.self, forKey: .countryCode)
+        isFavorite = try container.decodeIfPresent(Bool.self, forKey: .isFavorite) ?? false
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
     }
 
     var displayAddress: String {

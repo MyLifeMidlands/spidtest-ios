@@ -46,12 +46,15 @@ final class VPNManager: ObservableObject {
         proto.providerBundleIdentifier = AppConstants.VPN.tunnelBundleID
         proto.serverAddress = server.address
 
-        // Передаём конфиг сервера
+        // Передаём конфиг сервера и маршрутизации
+        var providerConfig: [String: Any] = [:]
         if let configData = try? JSONEncoder().encode(server) {
-            proto.providerConfiguration = [
-                "config": configData
-            ]
+            providerConfig["config"] = configData
         }
+        if let routingData = try? JSONEncoder().encode(RoutingStore.shared.config) {
+            providerConfig["routing"] = routingData
+        }
+        proto.providerConfiguration = providerConfig
 
         // Kill switch
         if SharedDefaults.shared.killSwitch {

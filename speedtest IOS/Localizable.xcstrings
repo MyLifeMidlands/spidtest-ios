@@ -5,12 +5,106 @@
 
     },
     "%@ Mbps" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Мбит/с"
+          }
+        }
+      }
     },
     "%@ ms" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ мс"
+          }
+        }
+      }
+    },
+    "%d of %d checks passed" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$d of %2$d checks passed"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d из %2$d проверок пройдено"
+          }
+        }
+      }
+    },
+    "%d server(s) imported" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d сервер(ов) импортировано"
+          }
+        }
+      }
+    },
+    "%lld%%" : {
 
     },
+    "1 hour" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 час"
+          }
+        }
+      }
+    },
+    "6 hours" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 часов"
+          }
+        }
+      }
+    },
+    "12 hours" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "12 часов"
+          }
+        }
+      }
+    },
+    "24 hours" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "24 часа"
+          }
+        }
+      }
+    },
+    "48 hours" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "48 часов"
+          }
+        }
+      }
+    },
     "A DNS leak occurs when your DNS queries bypass the VPN tunnel and go directly to your ISP's DNS servers, potentially exposing your browsing activity." : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -22,6 +116,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Утечка DNS происходит, когда ваши DNS-запросы обходят VPN-туннель и идут напрямую к DNS-серверам вашего провайдера, что может раскрыть вашу интернет-активность."
+          }
+        }
+      }
+    },
+    "A DNS leak occurs when your DNS queries bypass the VPN tunnel and go directly to your ISP's DNS servers. This can expose which websites you visit, even though your other traffic is encrypted." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Утечка DNS происходит, когда ваши DNS-запросы обходят VPN-туннель и идут напрямую к DNS-серверам провайдера. Это может раскрыть, какие сайты вы посещаете, даже если остальной трафик зашифрован."
+          }
+        }
+      }
+    },
+    "About Security Tests" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О проверках безопасности"
           }
         }
       }
@@ -58,6 +172,106 @@
         }
       }
     },
+    "Aggressive mode uses shorter delays between reconnection attempts (1-2-3 seconds instead of 3-6-9 seconds). Use this on unstable networks where connections drop frequently." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Агрессивный режим использует короткие интервалы между попытками (1-2-3 секунды вместо 3-6-9). Используйте в нестабильных сетях с частыми обрывами."
+          }
+        }
+      }
+    },
+    "Aggressive Reconnect" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Агрессивное переподключение"
+          }
+        }
+      }
+    },
+    "All except selected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всё кроме выбранных"
+          }
+        }
+      }
+    },
+    "All Servers" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все серверы"
+          }
+        }
+      }
+    },
+    "All through VPN" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всё через VPN"
+          }
+        }
+      }
+    },
+    "All Time" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За всё время"
+          }
+        }
+      }
+    },
+    "All traffic goes through VPN. Service selection is not used in this mode." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Весь трафик идёт через VPN. Выбор сервисов в этом режиме не используется."
+          }
+        }
+      }
+    },
+    "All traffic through VPN, no exceptions" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Весь трафик через VPN, без исключений"
+          }
+        }
+      }
+    },
+    "All traffic through VPN, Russian sites — direct" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Весь трафик через VPN, российские сайты — напрямую"
+          }
+        }
+      }
+    },
+    "Am I affected?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это касается меня?"
+          }
+        }
+      }
+    },
     "Auto-Connect" : {
       "localizations" : {
         "es" : {
@@ -74,6 +288,26 @@
         }
       }
     },
+    "Auto-Ping on Open" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автопинг при открытии"
+          }
+        }
+      }
+    },
+    "Auto-Reconnect" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автопереподключение"
+          }
+        }
+      }
+    },
     "Auto-select fastest server" : {
       "localizations" : {
         "es" : {
@@ -86,6 +320,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Автовыбор быстрейшего сервера"
+          }
+        }
+      }
+    },
+    "Auto-update server list from subscription" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автообновление списка серверов из подписки"
+          }
+        }
+      }
+    },
+    "Automatically measures latency to all servers and connects to the fastest one. Best for optimal speed." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматически измеряет задержку до всех серверов и подключается к самому быстрому."
+          }
+        }
+      }
+    },
+    "Belarus" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Беларусь"
           }
         }
       }
@@ -122,6 +386,16 @@
         }
       }
     },
+    "Built-in speed test and DNS leak detection. Always know your connection quality." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Встроенный тест скорости и проверка DNS-утечек. Всегда знайте качество вашего соединения."
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "es" : {
@@ -134,6 +408,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "China" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Китай"
+          }
+        }
+      }
+    },
+    "CIS traffic direct" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трафик СНГ напрямую"
           }
         }
       }
@@ -218,6 +512,26 @@
         }
       }
     },
+    "Connect to VPN, enable Kill Switch, and ensure no DNS or WebRTC leaks are detected. Following all recommendations will give you a 100% security score." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключитесь к VPN, включите Kill Switch и убедитесь, что утечки DNS и WebRTC не обнаружены. Следуя всем рекомендациям, вы получите 100%."
+          }
+        }
+      }
+    },
+    "Connect VPN" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключите VPN"
+          }
+        }
+      }
+    },
     "Connect VPN first for accurate results" : {
       "localizations" : {
         "es" : {
@@ -266,6 +580,97 @@
         }
       }
     },
+    "Connection" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключение"
+          }
+        }
+      }
+    },
+    "Connection events will appear here" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Здесь появятся события подключений"
+          }
+        }
+      }
+    },
+    "Connection Log" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Журнал подключений"
+          }
+        }
+      }
+    },
+    "Copied to clipboard" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скопировано в буфер обмена"
+          }
+        }
+      }
+    },
+    "Copy" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копировать"
+          }
+        }
+      }
+    },
+    "Countries" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Страны"
+          }
+        }
+      }
+    },
+    "Custom domains" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свои домены"
+          }
+        }
+      }
+    },
+    "Dark" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тёмная"
+          }
+        }
+      }
+    },
+    "Detected local IPs:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обнаруженные локальные IP:"
+          }
+        }
+      }
+    },
     "Disconnected" : {
       "localizations" : {
         "es" : {
@@ -298,6 +703,16 @@
         }
       }
     },
+    "DNS Leak detected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обнаружена утечка DNS"
+          }
+        }
+      }
+    },
     "DNS Leak Detected!" : {
       "localizations" : {
         "es" : {
@@ -315,6 +730,7 @@
       }
     },
     "DNS Leak Test" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -362,6 +778,17 @@
         }
       }
     },
+    "Domains" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Домены"
+          }
+        }
+      }
+    },
     "Done" : {
       "localizations" : {
         "es" : {
@@ -394,6 +821,36 @@
         }
       }
     },
+    "Duration: %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Длительность: %@"
+          }
+        }
+      }
+    },
+    "Enable Kill Switch" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включите Kill Switch"
+          }
+        }
+      }
+    },
+    "Enable Kill Switch when privacy is critical — for example, when using public Wi-Fi, accessing sensitive accounts, or in countries with internet censorship." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включайте Kill Switch, когда конфиденциальность критична — например, в публичном Wi-Fi, при работе с важными аккаунтами или в странах с цензурой."
+          }
+        }
+      }
+    },
     "Error" : {
       "localizations" : {
         "es" : {
@@ -406,6 +863,66 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ошибка"
+          }
+        }
+      }
+    },
+    "Even if your traffic is encrypted through VPN, DNS leaks let your ISP (and potentially governments) see every domain you visit. This defeats the privacy purpose of using a VPN." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Даже если трафик зашифрован через VPN, утечки DNS позволяют провайдеру видеть каждый домен, который вы посещаете. Это сводит на нет цель использования VPN."
+          }
+        }
+      }
+    },
+    "Everything goes through VPN except the domains and countries you choose. Useful when local banking or government sites block VPN connections." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всё идёт через VPN, кроме выбранных доменов и стран. Полезно, когда банки или госсайты блокируют VPN."
+          }
+        }
+      }
+    },
+    "example.com" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "example.com"
+          }
+        }
+      }
+    },
+    "Excellent" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отлично"
+          }
+        }
+      }
+    },
+    "Export / Import" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Экспорт / Импорт"
+          }
+        }
+      }
+    },
+    "Export Server" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Экспорт сервера"
           }
         }
       }
@@ -426,7 +943,18 @@
         }
       }
     },
+    "Fair" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удовлетворительно"
+          }
+        }
+      }
+    },
     "Fast & secure VPN powered by VLESS+Reality" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -442,7 +970,48 @@
         }
       }
     },
+    "Faster retry for unstable networks" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Быстрые повторные попытки для нестабильных сетей"
+          }
+        }
+      }
+    },
+    "Favorites" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранные"
+          }
+        }
+      }
+    },
+    "France" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Франция"
+          }
+        }
+      }
+    },
+    "Germany" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Германия"
+          }
+        }
+      }
+    },
     "Get a free 3-day trial or subscribe for unlimited access. Works on all devices." : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -454,6 +1023,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Получите бесплатный 3-дневный пробный период или подпишитесь для безлимитного доступа. Работает на всех устройствах."
+          }
+        }
+      }
+    },
+    "Get Started" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начать"
+          }
+        }
+      }
+    },
+    "Good" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хорошо"
+          }
+        }
+      }
+    },
+    "Haptic Feedback" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виброотклик"
           }
         }
       }
@@ -474,6 +1073,46 @@
         }
       }
     },
+    "How it works" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как это работает"
+          }
+        }
+      }
+    },
+    "How to improve" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как улучшить"
+          }
+        }
+      }
+    },
+    "How to prevent" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как защититься"
+          }
+        }
+      }
+    },
+    "How VPNeo protects you" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как VPNeo защищает вас"
+          }
+        }
+      }
+    },
     "How would you like to contact support?" : {
       "localizations" : {
         "es" : {
@@ -486,6 +1125,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Как вы хотите связаться с поддержкой?"
+          }
+        }
+      }
+    },
+    "If the current server fails, automatically switches to the next available server. Up to 3 failover attempts before giving up." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "При отказе сервера автоматически переключается на следующий. До 3 попыток переключения."
           }
         }
       }
@@ -506,6 +1155,46 @@
         }
       }
     },
+    "Import Server" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импорт сервера"
+          }
+        }
+      }
+    },
+    "Interface" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интерфейс"
+          }
+        }
+      }
+    },
+    "Iran" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иран"
+          }
+        }
+      }
+    },
+    "Japan" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Япония"
+          }
+        }
+      }
+    },
     "Jitter" : {
       "localizations" : {
         "es" : {
@@ -518,6 +1207,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Джиттер"
+          }
+        }
+      }
+    },
+    "Kazakhstan" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Казахстан"
           }
         }
       }
@@ -538,6 +1237,36 @@
         }
       }
     },
+    "Kill Switch blocks all internet traffic if the VPN connection drops unexpectedly. This prevents your real IP address and unencrypted data from being exposed, even for a moment." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kill Switch блокирует весь интернет-трафик при неожиданном обрыве VPN. Это предотвращает раскрытие вашего реального IP даже на мгновение."
+          }
+        }
+      }
+    },
+    "Kill Switch is on" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kill Switch включён"
+          }
+        }
+      }
+    },
+    "Language" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Язык"
+          }
+        }
+      }
+    },
     "Last Result" : {
       "localizations" : {
         "es" : {
@@ -550,6 +1279,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Последний результат"
+          }
+        }
+      }
+    },
+    "Leak" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Утечка"
+          }
+        }
+      }
+    },
+    "Light" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Светлая"
+          }
+        }
+      }
+    },
+    "Lightning Fast" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Молниеносная скорость"
           }
         }
       }
@@ -570,6 +1329,16 @@
         }
       }
     },
+    "Load balancing determines how VPNeo selects which server to connect to when you have multiple servers configured." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Балансировка нагрузки определяет, как VPNeo выбирает сервер при наличии нескольких серверов."
+          }
+        }
+      }
+    },
     "Manual" : {
       "localizations" : {
         "es" : {
@@ -582,6 +1351,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вручную"
+          }
+        }
+      }
+    },
+    "Maximum privacy" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Максимальная приватность"
+          }
+        }
+      }
+    },
+    "Maximum security. All your internet traffic is routed through the VPN server. Your real IP is hidden from every website and service." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Максимальная безопасность. Весь трафик идёт через VPN-сервер. Ваш реальный IP скрыт от всех сайтов."
           }
         }
       }
@@ -602,6 +1391,56 @@
         }
       }
     },
+    "Measure ping for all servers on launch" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замерять пинг всех серверов при запуске"
+          }
+        }
+      }
+    },
+    "Netherlands" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нидерланды"
+          }
+        }
+      }
+    },
+    "Next" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Далее"
+          }
+        }
+      }
+    },
+    "No connection history" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет истории подключений"
+          }
+        }
+      }
+    },
+    "No DNS Leak" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет утечки DNS"
+          }
+        }
+      }
+    },
     "No DNS Leak Detected" : {
       "localizations" : {
         "es" : {
@@ -614,6 +1453,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Утечка DNS не обнаружена"
+          }
+        }
+      }
+    },
+    "No other servers available" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет других доступных серверов"
           }
         }
       }
@@ -634,6 +1483,16 @@
         }
       }
     },
+    "No server available for reconnection" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет сервера для переподключения"
+          }
+        }
+      }
+    },
     "No Servers" : {
       "localizations" : {
         "es" : {
@@ -650,7 +1509,78 @@
         }
       }
     },
+    "No servers to export" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет серверов для экспорта"
+          }
+        }
+      }
+    },
+    "No WebRTC Leak" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет утечки WebRTC"
+          }
+        }
+      }
+    },
+    "Off" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выкл"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "Only selected through VPN" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Только выбранное через VPN"
+          }
+        }
+      }
+    },
+    "Only selected traffic goes through VPN" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Только выбранный трафик идёт через VPN"
+          }
+        }
+      }
+    },
+    "Only specified domains and services go through VPN. Everything else connects directly. Best for accessing specific blocked content while keeping maximum speed for everything else." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Только указанные домены и сервисы идут через VPN. Остальное — напрямую. Лучший вариант для доступа к заблокированному контенту."
+          }
+        }
+      }
+    },
     "Open in Telegram" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -682,6 +1612,16 @@
         }
       }
     },
+    "Paste" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставить"
+          }
+        }
+      }
+    },
     "Paste from Clipboard" : {
       "localizations" : {
         "es" : {
@@ -698,6 +1638,16 @@
         }
       }
     },
+    "Paste VLESS URI or subscription URL" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставьте VLESS URI или URL подписки"
+          }
+        }
+      }
+    },
     "Ping" : {
       "localizations" : {
         "es" : {
@@ -710,6 +1660,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Пинг"
+          }
+        }
+      }
+    },
+    "Please restart the app to apply the new language." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, перезапустите приложение для применения нового языка."
+          }
+        }
+      }
+    },
+    "Poland" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Польша"
+          }
+        }
+      }
+    },
+    "Poor" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Плохо"
+          }
+        }
+      }
+    },
+    "Popular services through VPN" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Популярные сервисы через VPN"
+          }
+        }
+      }
+    },
+    "Presets" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сценарии"
           }
         }
       }
@@ -731,6 +1732,7 @@
       }
     },
     "Protect Your Connection" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -742,6 +1744,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Защитите своё подключение"
+          }
+        }
+      }
+    },
+    "Protect your internet traffic with military-grade encryption. Your data stays private on any network." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Защитите свой интернет-трафик шифрованием военного класса. Ваши данные останутся приватными в любой сети."
           }
         }
       }
@@ -778,6 +1790,122 @@
         }
       }
     },
+    "Ready-made scenarios" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готовые сценарии"
+          }
+        }
+      }
+    },
+    "Recommendations" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рекомендации"
+          }
+        }
+      }
+    },
+    "Reconnect on failure (up to 3 attempts)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переподключение при сбое (до 3 попыток)"
+          }
+        }
+      }
+    },
+    "Reconnected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переподключён"
+          }
+        }
+      }
+    },
+    "Reconnecting... (%lld/%lld)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Reconnecting... (%1$lld/%2$lld)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переподключение... (%lld/%lld)"
+          }
+        }
+      }
+    },
+    "Reconnection failed after %lld attempts" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переподключение не удалось после %lld попыток"
+          }
+        }
+      }
+    },
+    "Refresh Interval" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интервал обновления"
+          }
+        }
+      }
+    },
+    "Remove all servers, settings and history" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить все серверы, настройки и историю"
+          }
+        }
+      }
+    },
+    "Reset" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сбросить"
+          }
+        }
+      }
+    },
+    "Reset All Data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сбросить все данные"
+          }
+        }
+      }
+    },
+    "Restart Required" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Требуется перезапуск"
+          }
+        }
+      }
+    },
     "Rotate servers each connection" : {
       "localizations" : {
         "es" : {
@@ -794,6 +1922,16 @@
         }
       }
     },
+    "Rotates through servers on each connection. Distributes load evenly across your server list." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чередует серверы при каждом подключении. Равномерно распределяет нагрузку."
+          }
+        }
+      }
+    },
     "Round Robin" : {
       "localizations" : {
         "es" : {
@@ -806,6 +1944,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "По кругу"
+          }
+        }
+      }
+    },
+    "Route all traffic through VPN" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Весь трафик через VPN"
+          }
+        }
+      }
+    },
+    "Routing" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маршрутизация"
+          }
+        }
+      }
+    },
+    "RU, UA, BY, KZ sites — direct, rest through VPN" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сайты RU, UA, BY, KZ — напрямую, остальное через VPN"
           }
         }
       }
@@ -843,6 +2011,36 @@
         }
       }
     },
+    "Russia" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Россия"
+          }
+        }
+      }
+    },
+    "Russian traffic direct" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Российский трафик напрямую"
+          }
+        }
+      }
+    },
+    "Safe" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Безопасно"
+          }
+        }
+      }
+    },
     "Scan QR Code" : {
       "localizations" : {
         "es" : {
@@ -855,6 +2053,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сканировать QR-код"
+          }
+        }
+      }
+    },
+    "Secure Connection" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Безопасное соединение"
+          }
+        }
+      }
+    },
+    "Security Score" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оценка безопасности"
+          }
+        }
+      }
+    },
+    "Security Test" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка безопасности"
+          }
+        }
+      }
+    },
+    "Security Tests" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверки безопасности"
           }
         }
       }
@@ -876,6 +2114,64 @@
         }
       }
     },
+    "Select countries" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите страны"
+          }
+        }
+      }
+    },
+    "Select services" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите сервисы"
+          }
+        }
+      }
+    },
+    "Selected services will bypass VPN and connect directly." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбранные сервисы будут работать напрямую, минуя VPN."
+          }
+        }
+      }
+    },
+    "Selected services will go through VPN. Everything else — directly." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбранные сервисы пойдут через VPN. Остальное — напрямую."
+          }
+        }
+      }
+    },
+    "Server failed. Switching... (%lld/%lld)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Server failed. Switching... (%1$lld/%2$lld)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сервер недоступен. Переключение... (%lld/%lld)"
+          }
+        }
+      }
+    },
     "Servers" : {
       "localizations" : {
         "es" : {
@@ -892,6 +2188,26 @@
         }
       }
     },
+    "Services" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сервисы"
+          }
+        }
+      }
+    },
+    "Session" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сессия"
+          }
+        }
+      }
+    },
     "Settings" : {
       "localizations" : {
         "es" : {
@@ -904,6 +2220,66 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Настройки"
+          }
+        }
+      }
+    },
+    "Share All Servers" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться всеми серверами"
+          }
+        }
+      }
+    },
+    "Share servers via QR code or URI" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться серверами через QR-код или URI"
+          }
+        }
+      }
+    },
+    "Share URI" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться URI"
+          }
+        }
+      }
+    },
+    "Skip" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пропустить"
+          }
+        }
+      }
+    },
+    "Slack, Zoom, GitHub, Google Drive, Microsoft — through VPN" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slack, Zoom, GitHub, Google Drive, Microsoft — через VPN"
+          }
+        }
+      }
+    },
+    "Smart Routing" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Умная маршрутизация"
           }
         }
       }
@@ -940,6 +2316,16 @@
         }
       }
     },
+    "Speed Test & DNS Check" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тест скорости и проверка DNS"
+          }
+        }
+      }
+    },
     "Speed Test History" : {
       "localizations" : {
         "es" : {
@@ -952,6 +2338,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "История тестов скорости"
+          }
+        }
+      }
+    },
+    "Split Tunneling" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раздельное туннелирование"
+          }
+        }
+      }
+    },
+    "Split tunneling lets you choose which apps and sites go through VPN. Flexible traffic rules for any scenario." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раздельное туннелирование позволяет выбирать, какие приложения и сайты идут через VPN. Гибкие правила трафика для любого сценария."
+          }
+        }
+      }
+    },
+    "Split tunneling lets you choose which traffic goes through the VPN and which connects directly. This can improve speed for local services while keeping sensitive traffic encrypted." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раздельное туннелирование позволяет выбрать, какой трафик идёт через VPN, а какой — напрямую. Это ускоряет работу с локальными сервисами."
           }
         }
       }
@@ -990,6 +2406,16 @@
         }
       }
     },
+    "Subscription Refresh" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновление подписки"
+          }
+        }
+      }
+    },
     "Support" : {
       "localizations" : {
         "es" : {
@@ -1018,6 +2444,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Переключение при сбое сервера"
+          }
+        }
+      }
+    },
+    "System" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Системная"
           }
         }
       }
@@ -1086,6 +2522,127 @@
         }
       }
     },
+    "The system blocks all network traffic outside the VPN tunnel using iOS 'includeAllNetworks' feature. Local network access (printers, AirDrop) remains available." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Система блокирует весь трафик за пределами VPN-туннеля через функцию iOS includeAllNetworks. Доступ к локальной сети сохраняется."
+          }
+        }
+      }
+    },
+    "Theme" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        }
+      }
+    },
+    "This test checks for DNS leaks, WebRTC IP exposure, and analyzes your connection security. Run it with VPN connected for the most accurate results." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот тест проверяет утечки DNS, WebRTC и анализирует безопасность вашего соединения. Запустите его с подключённым VPN для точных результатов."
+          }
+        }
+      }
+    },
+    "This test checks for DNS leaks, WebRTC IP exposure, and analyzes your connection security. Tap to learn more." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот тест проверяет утечки DNS, WebRTC и анализирует безопасность вашего соединения. Нажмите, чтобы узнать больше."
+          }
+        }
+      }
+    },
+    "This will delete all servers, connection settings and test history. This action cannot be undone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это удалит все серверы, настройки подключения и историю тестов. Действие нельзя отменить."
+          }
+        }
+      }
+    },
+    "Timezone" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Часовой пояс"
+          }
+        }
+      }
+    },
+    "Traffic rules and split tunneling" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правила трафика и раздельное туннелирование"
+          }
+        }
+      }
+    },
+    "Traffic Statistics" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статистика трафика"
+          }
+        }
+      }
+    },
+    "Traffic will be blocked if VPN connection drops." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трафик будет заблокирован при обрыве VPN-соединения."
+          }
+        }
+      }
+    },
+    "Turkey" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Турция"
+          }
+        }
+      }
+    },
+    "Ukraine" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Украина"
+          }
+        }
+      }
+    },
+    "United Kingdom" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Великобритания"
+          }
+        }
+      }
+    },
     "Upload" : {
       "localizations" : {
         "es" : {
@@ -1102,6 +2659,26 @@
         }
       }
     },
+    "USA" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "США"
+          }
+        }
+      }
+    },
+    "Use browsers with WebRTC disabled, or install browser extensions that block WebRTC. On iOS, Safari has limited WebRTC support, which reduces the risk." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте браузеры с отключённым WebRTC. В iOS Safari имеет ограниченную поддержку WebRTC, что снижает риск."
+          }
+        }
+      }
+    },
     "Version %@" : {
       "localizations" : {
         "es" : {
@@ -1114,6 +2691,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Версия %@"
+          }
+        }
+      }
+    },
+    "Vibration on connect/disconnect" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрация при подключении/отключении"
           }
         }
       }
@@ -1150,6 +2737,16 @@
         }
       }
     },
+    "VLESS+Reality protocol ensures maximum speed with minimum overhead. No throttling, no limits." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Протокол VLESS+Reality обеспечивает максимальную скорость с минимальными затратами. Без ограничений и торможений."
+          }
+        }
+      }
+    },
     "VPN" : {
       "localizations" : {
         "es" : {
@@ -1162,6 +2759,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "VPN"
+          }
+        }
+      }
+    },
+    "VPN for everything, except selected bypass rules" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN для всего, кроме выбранных исключений"
+          }
+        }
+      }
+    },
+    "VPN is active" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN активен"
           }
         }
       }
@@ -1215,6 +2832,66 @@
         }
       }
     },
+    "VPNeo routes all DNS queries through the VPN tunnel using secure DNS servers (1.1.1.1, 8.8.8.8). The Kill Switch feature adds extra protection by blocking traffic outside the tunnel." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPNeo направляет все DNS-запросы через VPN-туннель. Kill Switch добавляет защиту, блокируя трафик за пределами туннеля."
+          }
+        }
+      }
+    },
+    "WebRTC (Web Real-Time Communication) is a browser technology used for video calls and peer-to-peer connections. It can sometimes reveal your real IP address even when connected to a VPN." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WebRTC — технология браузера для видеозвонков и P2P-соединений. Она может раскрыть ваш реальный IP даже при подключённом VPN."
+          }
+        }
+      }
+    },
+    "WebRTC is not exposing your real IP address." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WebRTC не раскрывает ваш реальный IP-адрес."
+          }
+        }
+      }
+    },
+    "WebRTC Leak detected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обнаружена утечка WebRTC"
+          }
+        }
+      }
+    },
+    "WebRTC Leak Test" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тест утечки WebRTC"
+          }
+        }
+      }
+    },
+    "WebRTC leaks primarily affect web browsers (Safari, Chrome). Native iOS apps like VPNeo are not affected. However, if you use a browser while connected to VPN, your real IP might be exposed through WebRTC." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Утечки WebRTC затрагивают в основном браузеры (Safari, Chrome). Нативные приложения iOS не подвержены этому. Однако при использовании браузера ваш IP может быть раскрыт."
+          }
+        }
+      }
+    },
     "Website" : {
       "localizations" : {
         "es" : {
@@ -1243,6 +2920,176 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Что такое утечка DNS?"
+          }
+        }
+      }
+    },
+    "What is a WebRTC Leak?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что такое утечка WebRTC?"
+          }
+        }
+      }
+    },
+    "What is Kill Switch?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что такое Kill Switch?"
+          }
+        }
+      }
+    },
+    "What is Split Tunneling?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что такое раздельное туннелирование?"
+          }
+        }
+      }
+    },
+    "When enabled, VPNeo will automatically try to reconnect if the VPN connection drops unexpectedly. It makes up to 3 attempts with increasing delays between tries." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "При включении VPNeo автоматически попытается переподключиться при обрыве VPN. До 3 попыток с увеличивающимися интервалами."
+          }
+        }
+      }
+    },
+    "When to use it" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Когда использовать"
+          }
+        }
+      }
+    },
+    "Why is it dangerous?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чем это опасно?"
+          }
+        }
+      }
+    },
+    "Without Kill Switch, your real IP may be exposed if VPN disconnects unexpectedly." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без Kill Switch ваш реальный IP может быть раскрыт при неожиданном отключении VPN."
+          }
+        }
+      }
+    },
+    "Work & Cloud through VPN" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Работа и облако через VPN"
+          }
+        }
+      }
+    },
+    "You manually select which server to use. The app connects to your chosen server every time." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы вручную выбираете сервер. Приложение каждый раз подключается к выбранному."
+          }
+        }
+      }
+    },
+    "Your DNS queries are bypassing the VPN tunnel. Try reconnecting or changing your DNS settings." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваши DNS-запросы обходят VPN-туннель. Попробуйте переподключиться или изменить настройки DNS."
+          }
+        }
+      }
+    },
+    "Your DNS queries are properly routed through the VPN." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваши DNS-запросы правильно маршрутизируются через VPN."
+          }
+        }
+      }
+    },
+    "Your IP Address" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш IP-адрес"
+          }
+        }
+      }
+    },
+    "Your real IP address may be visible through WebRTC. Use a browser with WebRTC disabled for maximum privacy." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш реальный IP-адрес может быть виден через WebRTC. Используйте браузер с отключённым WebRTC для максимальной приватности."
+          }
+        }
+      }
+    },
+    "Your security score is calculated based on several checks: VPN connection, Kill Switch status, DNS leak test results, and WebRTC leak test results. A higher score means better privacy protection." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оценка безопасности рассчитывается на основе проверок: VPN-соединение, Kill Switch, тесты DNS и WebRTC. Чем выше оценка, тем лучше защита."
+          }
+        }
+      }
+    },
+    "Your traffic is encrypted and routed through a secure tunnel." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш трафик зашифрован и направлен через безопасный туннель."
+          }
+        }
+      }
+    },
+    "Your traffic is not encrypted. Connect to a VPN server to protect your privacy." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш трафик не зашифрован. Подключитесь к VPN-серверу для защиты приватности."
+          }
+        }
+      }
+    },
+    "YouTube, Telegram, Discord and others — through VPN" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YouTube, Telegram, Discord и другие — через VPN"
           }
         }
       }

@@ -2,8 +2,8 @@ import Foundation
 
 struct XrayConfigBuilder {
 
-    static func build(from config: VLESSConfig, socksPort: Int = 10808) -> String {
-        let json = buildDictionary(from: config, socksPort: socksPort)
+    static func build(from config: VLESSConfig, socksPort: Int = 10808, routing: RoutingConfiguration? = nil) -> String {
+        let json = buildDictionary(from: config, socksPort: socksPort, routing: routing)
         guard let data = try? JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted, .sortedKeys]),
               let string = String(data: data, encoding: .utf8) else {
             return "{}"
@@ -11,7 +11,7 @@ struct XrayConfigBuilder {
         return string
     }
 
-    static func buildDictionary(from config: VLESSConfig, socksPort: Int = 10808) -> [String: Any] {
+    static func buildDictionary(from config: VLESSConfig, socksPort: Int = 10808, routing: RoutingConfiguration? = nil) -> [String: Any] {
         var json: [String: Any] = [:]
 
         // Log
@@ -158,22 +158,87 @@ struct XrayConfigBuilder {
 
         json["outbounds"] = [outbound, directOutbound, blockOutbound]
 
-        // Routing — простые правила без GeoIP файлов
-        json["routing"] = [
-            "domainStrategy": "AsIs",
-            "rules": [
-                [
+        // Routing
+        var rules: [[String: Any]] = [
+            // Always exclude private networks
+            [
+                "type": "field",
+                "outboundTag": "direct",
+                "ip": [
+                    "10.0.0.0/8",
+                    "172.16.0.0/12",
+                    "192.168.0.0/16",
+                    "127.0.0.0/8"
+                ]
+            ] as [String: Any]
+        ]
+
+        // Apply split tunneling rules
+        if let routing = routing {
+            let domains = routing.allBypassDomains
+            let countryCodes = routing.allSelectedCountryCodes
+
+            switch routing.mode {
+            case .allThroughVPN:
+                break // Default behavior — all through proxy
+
+            case .allExceptSelected:
+                // Selected domains go direct (bypass VPN)
+                if !domains.isEmpty {
+                    let domainRules = domains.map { "domain:\($0)" }
+                    rules.append([
+                        "type": "field",
+                        "outboundTag": "direct",
+                        "domain": domainRules
+                    ] as [String: Any])
+                }
+                // Selected countries go direct
+                for code in countryCodes {
+                    rules.append([
+                        "type": "field",
+                        "outboundTag": "direct",
+                        "domain": ["geosite:\(code.lowercased())"]
+                    ] as [String: Any])
+                }
+
+            case .onlySelected:
+                // Selected domains go through proxy, everything else direct
+                if !domains.isEmpty {
+                    let domainRules = domains.map { "domain:\($0)" }
+                    rules.append([
+                        "type": "field",
+                        "outboundTag": "proxy",
+                        "domain": domainRules
+                    ] as [String: Any])
+                }
+                for code in countryCodes {
+                    rules.append([
+                        "type": "field",
+                        "outboundTag": "proxy",
+                        "domain": ["geosite:\(code.lowercased())"]
+                    ] as [String: Any])
+                }
+                // Everything else — direct
+                rules.append([
                     "type": "field",
                     "outboundTag": "direct",
-                    "ip": [
-                        "10.0.0.0/8",
-                        "172.16.0.0/12",
-                        "192.168.0.0/16",
-                        "127.0.0.0/8"
-                    ]
-                ] as [String: Any]
-            ]
-        ]
+                    "network": "tcp,udp"
+                ] as [String: Any])
+            }
+        }
+
+        // Use IPIfNonMatch when geo files are available for country-based routing
+        let domainStrategy: String
+        if let routing = routing, routing.mode != .allThroughVPN {
+            domainStrategy = "IPIfNonMatch"
+        } else {
+            domainStrategy = "AsIs"
+        }
+
+        json["routing"] = [
+            "domainStrategy": domainStrategy,
+            "rules": rules
+        ] as [String: Any]
 
         return json
     }

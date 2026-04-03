@@ -34,8 +34,12 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
         logger.info("Server: \(serverConfig.address):\(serverConfig.port)")
 
-        // 2. Build Xray JSON config
-        let xrayConfig = XrayConfigBuilder.build(from: serverConfig)
+        // 2. Build Xray JSON config (with routing if available)
+        var routingConfig: RoutingConfiguration?
+        if let routingData = providerConfig["routing"] as? Data {
+            routingConfig = try? JSONDecoder().decode(RoutingConfiguration.self, from: routingData)
+        }
+        let xrayConfig = XrayConfigBuilder.build(from: serverConfig, routing: routingConfig)
         logger.info("Xray config built")
 
         // 3. Set tunnel network settings
@@ -150,7 +154,39 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
         try? FileManager.default.createDirectory(at: geoDir, withIntermediateDirectories: true)
 
+        // Copy geo files from bundle to App Group if not present or outdated
+        copyGeoFileIfNeeded(name: "geosite.dat", to: geoDir)
+        copyGeoFileIfNeeded(name: "geoip.dat", to: geoDir)
+
         return geoDir
+    }
+
+    private func copyGeoFileIfNeeded(name: String, to directory: URL) {
+        let destURL = directory.appendingPathComponent(name)
+        let fm = FileManager.default
+
+        // Find file in tunnel extension bundle
+        guard let bundleURL = Bundle.main.url(forResource: name.replacingOccurrences(of: ".dat", with: ""), withExtension: "dat") else {
+            logger.warning("Geo file \(name) not found in bundle")
+            return
+        }
+
+        // Skip if destination exists and is same size (simple check)
+        if fm.fileExists(atPath: destURL.path) {
+            let bundleSize = (try? fm.attributesOfItem(atPath: bundleURL.path)[.size] as? Int) ?? 0
+            let destSize = (try? fm.attributesOfItem(atPath: destURL.path)[.size] as? Int) ?? 0
+            if bundleSize == destSize && bundleSize > 0 {
+                return
+            }
+            try? fm.removeItem(at: destURL)
+        }
+
+        do {
+            try fm.copyItem(at: bundleURL, to: destURL)
+            logger.info("Copied \(name) to geo directory")
+        } catch {
+            logger.error("Failed to copy \(name): \(error.localizedDescription)")
+        }
     }
 
     // MARK: - Network Interfaces

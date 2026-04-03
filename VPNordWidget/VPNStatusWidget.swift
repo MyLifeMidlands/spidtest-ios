@@ -44,16 +44,33 @@ struct VPNStatusWidget: Widget {
         }
         .configurationDisplayName("VPN Status")
         .description("See your VPN connection status at a glance.")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .accessoryCircular, .accessoryRectangular, .accessoryInline])
     }
 }
 
 struct VPNStatusWidgetView: View {
+    @Environment(\.widgetFamily) var family
     let entry: VPNStatusEntry
 
     var body: some View {
+        switch family {
+        case .systemSmall:
+            systemSmallView
+        case .accessoryCircular:
+            accessoryCircularView
+        case .accessoryRectangular:
+            accessoryRectangularView
+        case .accessoryInline:
+            accessoryInlineView
+        default:
+            systemSmallView
+        }
+    }
+
+    // MARK: - System Small (Home Screen)
+
+    private var systemSmallView: some View {
         VStack(spacing: 12) {
-            // Status icon
             ZStack {
                 Circle()
                     .fill(statusColor.opacity(0.15))
@@ -64,12 +81,10 @@ struct VPNStatusWidgetView: View {
                     .foregroundStyle(statusColor)
             }
 
-            // Status label
             Text(entry.state.label)
                 .font(.system(size: 13, weight: .semibold))
                 .foregroundStyle(.white)
 
-            // Server name
             if let name = entry.serverName {
                 Text(name)
                     .font(.system(size: 11))
@@ -80,6 +95,65 @@ struct VPNStatusWidgetView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .widgetURL(URL(string: "vpneo://toggle-vpn"))
     }
+
+    // MARK: - Lock Screen Circular
+
+    private var accessoryCircularView: some View {
+        ZStack {
+            AccessoryWidgetBackground()
+
+            VStack(spacing: 2) {
+                Image(systemName: statusIcon)
+                    .font(.system(size: 18, weight: .medium))
+
+                if entry.state == .connected {
+                    Circle()
+                        .fill(.green)
+                        .frame(width: 4, height: 4)
+                } else {
+                    Circle()
+                        .fill(.gray)
+                        .frame(width: 4, height: 4)
+                }
+            }
+        }
+        .widgetURL(URL(string: "vpneo://toggle-vpn"))
+    }
+
+    // MARK: - Lock Screen Rectangular
+
+    private var accessoryRectangularView: some View {
+        HStack(spacing: 8) {
+            Image(systemName: statusIcon)
+                .font(.system(size: 20, weight: .medium))
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(entry.state == .connected ? "VPN On" : "VPN Off")
+                    .font(.system(size: 14, weight: .semibold))
+
+                if let name = entry.serverName {
+                    Text(name)
+                        .font(.system(size: 11))
+                        .opacity(0.7)
+                }
+            }
+
+            Spacer()
+        }
+        .widgetURL(URL(string: "vpneo://toggle-vpn"))
+    }
+
+    // MARK: - Lock Screen Inline
+
+    private var accessoryInlineView: some View {
+        HStack(spacing: 4) {
+            Image(systemName: statusIcon)
+            Text(entry.state == .connected ? "VPN: \(entry.serverName ?? "On")" : "VPN Off")
+        }
+        .widgetURL(URL(string: "vpneo://toggle-vpn"))
+    }
+
+    // MARK: - Helpers
 
     private var statusColor: Color {
         switch entry.state {
